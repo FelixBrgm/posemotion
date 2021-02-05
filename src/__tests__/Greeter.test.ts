@@ -1,6 +1,6 @@
-import { DetectionAngle } from '../detection'
+import { DetectionAnglePosenet } from '../detection'
 
-let detection = new DetectionAngle();
+let detection = new DetectionAnglePosenet();
 test('DetectionAngle', () => {
-  expect(detection._next({})).toBe([]);
+  expect(detection._next({}: Harmonized)).toBe([]);
 });
