@@ -1,13 +1,21 @@
 {
   "name": "posemotion",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "A library for pose-detection Ai to calculate motion out of the output data.",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --config jestconfig.json",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
-    "lint": "tslint -p tsconfig.json"
+    "lint": "tslint -p tsconfig.json",
+    "prepare" : "npm run build",
+    "prepublishOnly" : "npm test && npm run lint",
+    "preversion" : "npm run lint",
+    "version" : "npm run format && git add -A src",
+    "postversion" : "git push && git push --tags"
+
+
   },
   "files": [
     "lib/**/*"
@@ -16,7 +24,7 @@
     "type": "git",
     "url": "git+https://github.com/FelixBrgn/posemotion.git"
   },
-  "keywords": [],
+  "keywords": ["posemotion", "posenet", "detection", "poseestimation"],
   "author": "Felix Brüggemann",
   "license": "ISC",
   "bugs": {
