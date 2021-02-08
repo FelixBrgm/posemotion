@@ -10,7 +10,7 @@ export interface IDetection {
     _next(keypoints: any): number[];
 };
 
-export class DetectionAnglePosenet implements IDetection {
+export class DetectionPosenetAngle implements IDetection {
 
     private _hooks: DetectionAngleData;
     constructor(detectionHooks: DetectionAngleData) {
@@ -20,6 +20,7 @@ export class DetectionAnglePosenet implements IDetection {
     //TODO: HarmoniyedOutput nor working
     _next(keypoints: { [part: string]: Position }): number[] {
         return [];
+        //Jetzt muss hier die logik noch rein und natürlich test driven programming
     }
 }
 
