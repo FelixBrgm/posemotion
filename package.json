@@ -1,6 +1,6 @@
 {
   "name": "posemotion",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "A library for pose-detection Ai to calculate motion out of the output data.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

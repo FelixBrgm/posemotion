@@ -1,5 +1,5 @@
-import { DetectionAngle, PosenetParts } from '../detection/detection'
-
+import { PosenetParts } from '../detection/detection'
+import { DetectionAngle } from '../detection/detectionAngle';
 let detectionAnglePosenet = new DetectionAngle({
   point1: PosenetParts.leftWrist,
   point2: PosenetParts.leftShoulder,

@@ -19,11 +19,11 @@ export interface Position {
 // Posenet
 function isPosenetOutput(output: any): boolean {
     if ("pose" in output) {
-        let pose = output.pose
+        const pose = output.pose
         if ("keypoints" in pose && "score" in pose) {
-            let keypoint = pose.keypoints[0];
+            const keypoint = pose.keypoints[0];
             if ('position' in keypoint && 'part' in keypoint && 'score' in keypoint) {
-                let position = keypoint.position;
+                const position = keypoint.position;
                 if ('x' in position && 'y' in position) {
                     return true
                 }
