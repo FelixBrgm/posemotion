@@ -24,7 +24,7 @@ function isPosenetOutput(keypoints: any): boolean {
     return true; // TODO: Make this realy detect something
 }
 function convertPosenetToHamonizedKeypoints(output: PosenetOutput): HarmonizedKeypoints {
-    let res: HarmonizedKeypoints = {};
+    const res: HarmonizedKeypoints = {};
     output.keypoints.forEach(p => {
         res[p.part] = p.position;
     });

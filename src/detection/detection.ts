@@ -11,35 +11,38 @@ export class DetectionAngle implements IDetection {
         this._metaData = metaData;
     }
     next(keypoints: any): string[] {
-        let harmonizedKeypoints: HarmonizedKeypoints = convertToHarmonizedKeypoints(keypoints);
-        let angle = getAngleByPoints(
+        if (keypoints.length === 0)
+            throw new Error("Keypointsarray is empty");
+
+        const harmonizedKeypoints: HarmonizedKeypoints = convertToHarmonizedKeypoints(keypoints);
+        const angle = getAngleByPoints(
             harmonizedKeypoints[this._metaData.pointMiddle],
             harmonizedKeypoints[this._metaData.point1],
             harmonizedKeypoints[this._metaData.point2]
         );
 
-        let detectedHooks: Hooks = {};
+        const detectedHooks: Hooks = {}; // should be let
         Object.keys(this._metaData.hooks).map(_currentHook => {
-            let _hookSector: HookSector = this._metaData.hooks[_currentHook];
+            const _hookSector: HookSector = this._metaData.hooks[_currentHook];
             if (angle >= _hookSector.min && angle <= _hookSector.max) {
                 detectedHooks[_currentHook] = _hookSector;
             }
         });
 
-        let res: string[] = [];
+        const res: string[] = [];
         Object.keys(detectedHooks).map(_hook => {
             res.push(_hook);
         });
-        return res;
+        return res!;
     }
 }
 
 // Functions
 function getAngleByPoints(pt: Position, p1: Position, p2: Position) {
-    let vector1X = p1.x - pt.x;
-    let vector1Y = p1.y - pt.y;
-    let vector2X = p2.x - pt.x;
-    let vector2Y = p2.y - pt.y;
+    const vector1X = p1.x - pt.x;
+    const vector1Y = p1.y - pt.y;
+    const vector2X = p2.x - pt.x;
+    const vector2Y = p2.y - pt.y;
     // Ref. https://stackoverflow.com/questions/21483999/using-atan2-to-find-angle-between-two-vectors/21486462
     let angle = Math.atan2(vector2Y, vector2X) - Math.atan2(vector1Y, vector1X);
 
