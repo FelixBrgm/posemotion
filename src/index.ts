@@ -1,3 +1,3 @@
-import { IDetection } from './detection';
+import { IDetection } from './detection/detection';
 
 export { IDetection };
