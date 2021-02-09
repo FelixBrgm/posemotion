@@ -1,9 +1,6 @@
-
-
-export function convertToHarmonizedKeypoints(keypoints: any): HarmonizedKeypoints {
-
-    if (isPosenetOutput(keypoints)) {
-        return convertPosenetToHamonizedKeypoints(keypoints);
+export function convertToHarmonizedKeypoints(output: any): HarmonizedKeypoints {
+    if (isPosenetOutput(output)) {
+        return convertPosenetToHamonizedKeypoints(output);
     }
 
     throw new TypeError('Input is not any of the supported types');
@@ -20,8 +17,20 @@ export interface Position {
 }
 
 // Posenet
-function isPosenetOutput(keypoints: any): boolean {
-    return true; // TODO: Make this realy detect something
+function isPosenetOutput(output: any): boolean {
+    if ("pose" in output) {
+        let pose = output.pose
+        if ("keypoints" in pose && "score" in pose) {
+            let keypoint = pose.keypoints[0];
+            if ('position' in keypoint && 'part' in keypoint && 'score' in keypoint) {
+                let position = keypoint.position;
+                if ('x' in position && 'y' in position) {
+                    return true
+                }
+            }
+        }
+    }
+    return false;
 }
 function convertPosenetToHamonizedKeypoints(output: PosenetOutput): HarmonizedKeypoints {
     const res: HarmonizedKeypoints = {};
@@ -30,6 +39,7 @@ function convertPosenetToHamonizedKeypoints(output: PosenetOutput): HarmonizedKe
     });
     return res;
 }
+
 export interface PosenetOutput {
     pose: PosenetPose;
 }

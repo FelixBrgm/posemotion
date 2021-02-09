@@ -1,20 +1,27 @@
 import { convertToHarmonizedKeypoints } from './convertToHarmonizedKeypoints';
 
+
 export interface IDetection {
-    next(keypoints: any): string[] // TODO: Change any to self made interface for all possible inputs
+    next(keypoints: any): string[]
 }
 
+/**
+ * Class for detecting in which given sector the angle between 3 points is in.
+ */
 export class DetectionAngle implements IDetection {
-
     private _metaData: AngleMetaData;
     constructor(metaData: AngleMetaData) {
         this._metaData = metaData;
     }
-    next(keypoints: any): string[] {
-        if (keypoints.length === 0)
-            throw new Error("Keypointsarray is empty");
+    /**
+     * @param output - result/output of the poseestimation-ai
+     * @returns array of all sectors that have the given angle in between there threshholds 
+     */
+    next(output: any): string[] {
+        if (output.length === 0)
+            throw new Error("Output is empty");
 
-        const harmonizedKeypoints: HarmonizedKeypoints = convertToHarmonizedKeypoints(keypoints);
+        const harmonizedKeypoints: HarmonizedKeypoints = convertToHarmonizedKeypoints(output);
         const angle = getAngleByPoints(
             harmonizedKeypoints[this._metaData.pointMiddle],
             harmonizedKeypoints[this._metaData.point1],
@@ -58,7 +65,6 @@ function getAngleByPoints(pt: Position, p1: Position, p2: Position) {
     }
     return angle;
 }
-
 
 // Interfaces
 export interface AngleMetaData {
@@ -106,3 +112,4 @@ export enum PosenetParts {
     leftAnkle = "leftAnkle",
     rightAnkle = "rightAnkle"
 }
+

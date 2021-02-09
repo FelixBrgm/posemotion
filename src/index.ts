@@ -1,3 +1,5 @@
-import * as detection from './detection/detection';
+import { AngleMetaData, DetectionAngle, Parts } from './detection/detection';
 
-export { detection };
+export { DetectionAngle };
+export { Parts };
+export { AngleMetaData };
