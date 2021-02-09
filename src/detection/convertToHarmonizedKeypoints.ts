@@ -25,12 +25,15 @@ function isPosenetOutput(keypoints: any): boolean {
 }
 function convertPosenetToHamonizedKeypoints(output: PosenetOutput): HarmonizedKeypoints {
     const res: HarmonizedKeypoints = {};
-    output.keypoints.forEach(p => {
+    output.pose.keypoints.forEach(p => {
         res[p.part] = p.position;
     });
     return res;
 }
 export interface PosenetOutput {
+    pose: PosenetPose;
+}
+export interface PosenetPose {
     score: number;
     keypoints: PosenetKeypoint[];
 }
