@@ -1,5 +1,5 @@
 export interface IDetection {
-    next(keypoints: any): string[]
+    next(output: any): string[]
 }
 
 

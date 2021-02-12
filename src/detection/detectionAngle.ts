@@ -32,6 +32,7 @@ export class DetectionAngle implements IDetection {
             }
         });
 
+        // Only pass the string value of the hooks
         const res: string[] = [];
         Object.keys(detectedHooks).map(_hook => {
             res.push(_hook);
