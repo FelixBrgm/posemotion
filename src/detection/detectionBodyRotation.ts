@@ -13,7 +13,7 @@ export class DetectionBodyRotation implements IDetection {
             throw new Error("Output is empty");
 
         const harmonizedKeypoints: HarmonizedKeypoints = convertToHarmonizedKeypoints(output);
-        let angle: number = calculateBodyRotation(harmonizedKeypoints);
+        const angle: number = calculateBodyRotation(harmonizedKeypoints);
 
         const detectedHooks: Hooks = {}; // should be let
         Object.keys(this._metaData.hooks).map(_currentHook => {
@@ -34,8 +34,11 @@ export class DetectionBodyRotation implements IDetection {
 
 // Helper functions
 function calculateBodyRotation(keypoints: HarmonizedKeypoints): number {
-    const distanceHipShoulder: number = calculateDistanceBetween2Points(keypoints["leftShoulder"], keypoints['leftHip']);
-    const distanceShoulderShoulder: number = calculateDistanceBetween2Points(keypoints["leftShoulder"], keypoints['rightShoulder']);
+    const leftShoulder: string = "leftShoulder";
+    const leftHip: string = "leftHip";
+    const rightShoulder: string = "rightShoulder";
+    const distanceHipShoulder: number = calculateDistanceBetween2Points(keypoints[leftShoulder], keypoints[leftHip]);
+    const distanceShoulderShoulder: number = calculateDistanceBetween2Points(keypoints[leftShoulder], keypoints[rightShoulder]);
     let relation: number = (distanceShoulderShoulder / distanceHipShoulder) * 1.3;
     if (relation > 1) {
         relation = 1;
