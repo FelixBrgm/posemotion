@@ -40,6 +40,7 @@ function calculateBodyRotation(keypoints: HarmonizedKeypoints): number {
     if (relation > 1) {
         relation = 1;
     }
+    // result 0 when frontfacing - 90 when side facing
     return 90 - Math.asin(relation);
 }
 function calculateDistanceBetween2Points(p1: Point, p2: Point): number {
