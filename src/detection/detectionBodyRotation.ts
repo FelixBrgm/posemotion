@@ -49,7 +49,6 @@ function calculateDistanceBetween2Points(p1: Point, p2: Point): number {
     return Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
 }
 interface BodyRotationMetaData {
-    // TODO: make the disctanceHipshoulder dynamic
     hooks: Hooks
 }
 
