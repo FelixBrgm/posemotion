@@ -11,8 +11,8 @@ export interface Position {
     y: number;
     x: number;
 }
-// Types
 
+// Types
 export enum PosenetParts {
     nose = "nose",
     leftEye = "leftEye",
