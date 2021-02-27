@@ -1,7 +1,7 @@
 import { PosenetParts } from '../detection/detection'
 import { DetectionAngle } from '../detection/detectionAngle';
 import { DetectionBodyRotation } from '../detection/detectionBodyRotation';
-
+import { Exercise } from '../excercise/exercise';
 // Angle
 let detectionAngle = new DetectionAngle({
   point1: PosenetParts.leftWrist,
@@ -624,3 +624,43 @@ test('DetectionBodyRotation', () => {
   expect(detectionBodyRotation.next(posenetSideFacing)).toStrictEqual(['side']);
 
 });
+
+
+// Excercise
+let exercise: Exercise = new Exercise([
+  new DetectionAngle({
+    point1: PosenetParts.leftWrist,
+    point2: PosenetParts.leftShoulder,
+    pointMiddle: PosenetParts.leftElbow,
+    hooks: {
+      close: {
+        min: 150,
+        max: 160
+      },
+      fdas: {
+        min: 150,
+        max: 160
+      }
+
+
+    }
+  }),
+  new DetectionAngle({
+    point1: PosenetParts.leftWrist,
+    point2: PosenetParts.leftShoulder,
+    pointMiddle: PosenetParts.leftElbow,
+    hooks: {
+      close: {
+        min: 150,
+        max: 160
+      },
+      asdf: {
+        min: 150,
+        max: 160
+      }
+    }
+  })], []);
+test('Exercise', () => {
+  expect(exercise.next(posenetFrontFacing)).toStrictEqual(['close']);
+});
+
