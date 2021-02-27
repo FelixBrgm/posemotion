@@ -2,8 +2,7 @@ import { PosenetParts } from '../detection/detection'
 import { DetectionAngle } from '../detection/detectionAngle';
 import { DetectionBodyRotation } from '../detection/detectionBodyRotation';
 
-
-
+// Angle
 let detectionAngle = new DetectionAngle({
   point1: PosenetParts.leftWrist,
   point2: PosenetParts.leftShoulder,
