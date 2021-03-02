@@ -26,13 +26,13 @@ export class Exercise implements IExercise {
                 res = states;
             }
             else {
-                let ram: string[] = [];
+                let sameStates: string[] = [];
                 states.forEach(state => {
                     if (res.find(e => e == state)) {
-                        ram.push(state);
+                        sameStates.push(state);
                     }
                 });
-                res = ram;
+                res = sameStates;
             }
 
         });
