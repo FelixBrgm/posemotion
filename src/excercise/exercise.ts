@@ -36,8 +36,6 @@ export class Exercise implements IExercise {
             }
 
         });
-        console.log(res!);
-
         return res!;
     }
 }
