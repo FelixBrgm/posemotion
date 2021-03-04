@@ -3,7 +3,7 @@ import { IExercise } from './exercise';
 
 export class Exercise implements IExercise {
     _detections: IDetection[];
-    _sequence: string[];
+    _sequence: string[]; // The sequence in which the detections have to occur to be able to detect motion between poses
     _neededStatusIndex: number = 0;
     constructor(detections: IDetection[], sequence: string[]) {
         this._detections = detections;
@@ -34,6 +34,7 @@ export class Exercise implements IExercise {
         return this.checkIfNeededStatus(res);
     }
 
+    // Checks if the status needed in the sequence is the detected one
     checkIfNeededStatus(currentStatus: string[]): boolean {
         if (currentStatus.find(x => x == this._sequence[this._neededStatusIndex])) {
             this._neededStatusIndex++;

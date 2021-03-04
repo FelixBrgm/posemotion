@@ -3,7 +3,7 @@ export function convertToHarmonizedKeypoints(output: any): HarmonizedKeypoints {
         return convertPosenetToHamonizedKeypoints(output);
     }
 
-    throw new TypeError('Input is not any of the supported types');
+    throw new TypeError('Input is not any of the supported types: Maybe you have not given the keypoints but the whole Object');
 }
 
 
