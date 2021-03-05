@@ -40,9 +40,29 @@ export class Exercise implements IExercise {
             this._neededStatusIndex++;
             if (this._neededStatusIndex >= this._sequence.length) {
                 this._neededStatusIndex = 0;
-                return true;
+                this.checkIfNeededCount();
             }
         }
         return false
+    }
+    checkIfNeededCount(): boolean {
+        return true;
+    }
+}
+
+export class Excercise extends Exercise {
+    _neededCount: number = 0;
+    _count: number = 0;
+    super(detections: IDetection[], sequence: string[], neededCount: number) {
+        this._detections = detections;
+        this._sequence = sequence;
+        this._neededCount = neededCount;
+    }
+    checkIfNeededCount() {
+        this._count++;
+        if (this._count >= this._neededCount) {
+            return true;
+        }
+        return false;
     }
 }
