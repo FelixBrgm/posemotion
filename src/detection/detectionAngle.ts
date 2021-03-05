@@ -3,6 +3,7 @@ import { IDetection } from './detection';
 
 /**
  * Class for detecting in which given sector the angle between 3 points is in.
+ * @param AngleMetaData includes the 3 reference points for the angle and the sectors with there corespondend name
  */
 export class DetectionAngle implements IDetection {
     private _metaData: AngleMetaData;
@@ -10,8 +11,8 @@ export class DetectionAngle implements IDetection {
         this._metaData = metaData;
     }
     /**
-     * @param output - result/output of the poseestimation-ai
-     * @returns array of all sectors that have the given angle in between there threshholds 
+     * @param output - result/output of the pose-estimation-ai
+     * @returns array of all detected sectors 
      */
     next(output: any): string[] {
         if (output.length === 0)

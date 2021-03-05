@@ -2,12 +2,20 @@ import { PosenetParts } from '..';
 import { convertToHarmonizedKeypoints } from './convertToHarmonizedKeypoints';
 import { HarmonizedKeypoints, IDetection } from './detection';
 
+/**
+ * @param BodyRotationMetaData which includes the sectors with their corespoinding names
+ * @returns array of all detected sectors
+ */
 export class DetectionBodyRotation implements IDetection {
     private _metaData: BodyRotationMetaData;
     constructor(metaData: BodyRotationMetaData) {
         this._metaData = metaData;
     }
-
+    /**
+     * Function to calculate the detection form a pose-estimation-ai-output
+     * @param output - result/output of the pose-estimation-ai
+     * @returns array of all detected sectors 
+     */
     next(output: any): string[] {
         if (output.length === 0)
             throw new Error("Output is empty");
